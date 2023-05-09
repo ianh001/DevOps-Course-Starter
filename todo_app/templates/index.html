@@ -2,17 +2,56 @@
 {% block title %}To-Do App{% endblock %}
 
 {% block content %}
-  <div class="jumbotron">
+  <div class="jumbotron text-white" style="background-color: #53669f;">
     <h1 class="display-4">To-Do App</h1>
-    <p class="lead">Just another to-do app.</p>
+    <p class="lead">My to-do app.</p>
   </div>
 
   <div class="row">
     <div class="col-md-12">
       <h2>Items</h2>
       <ul class="list-group mb-4">
-        <!-- List the todo items here -->
+        {% for item in items %}
+        <li>ID: {{ item.id }} - {{ item.title }} - {{item.status}}</li>
+        {% endfor %}
       </ul>
     </div>
   </div>
+  
+  <!-- added for add item -->
+    <div class="row">
+      <form class="col-auto" action="/additem" method="POST" id="newitem">
+        <div class="input-group">
+          <input name="title" type="text" class="form-control" placeholder="Enter new Item" required /><span>
+          <button type="submit" class="btn btn-primary"> Add Item </button></span>
+        </div>  
+      </form>
+    </div>  
+  <!-- Stretch Goals-->
+
+  <!--Add functionality to mark an item as completed-->
+  <!--
+    <div class="row">
+      <form class="col-auto" action="/complete" method="POST" id="complete">
+        <div class="input-group">
+          <input name="ID" type="text" Class="form-control" placeholder="ID to mark complete" required /><span>
+          <button type="submit"class="btn btn-success"> Completed </button></span>
+        </div>
+      </form>
+    </div>
+  -->
+    {% for item in items %}
+      <div class="d-flex">
+          <li>ID: {{ item.id }} - {{ item.title }} - {{item.status}}</li>
+          {% if item.status != 'Complete' %}
+              <form class="col-auto" action="/complete" method="POST" id="complete">
+                  <input name="ID" type="hidden" Class="form-control" value={{ item.id }} />
+                  <button type="submit"class="btn btn-success"> Completed </button>
+              </form>
+          {% endif %}
+      </div>
+    {% endfor %}
+
 {% endblock %}
+
+
