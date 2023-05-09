@@ -13,9 +13,7 @@ app.config.from_object(Config())
 
 @app.route('/')
 def index():
-   # items = get_items()    
-    #return render_template('index.html',items=items)
-    # used - https://note.nkmk.me/en/python-dict-list-sort/
+
     current_items=sorted(get_items(), key=lambda x: x['status'])  
     return render_template('index.html', items=current_items)
 

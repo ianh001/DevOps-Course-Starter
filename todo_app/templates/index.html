@@ -30,6 +30,7 @@
   <!-- Stretch Goals-->
 
   <!--Add functionality to mark an item as completed-->
+  <!--
     <div class="row">
       <form class="col-auto" action="/complete" method="POST" id="complete">
         <div class="input-group">
@@ -38,6 +39,18 @@
         </div>
       </form>
     </div>
+  -->
+    {% for item in items %}
+      <div class="d-flex">
+          <li>ID: {{ item.id }} - {{ item.title }} - {{item.status}}</li>
+          {% if item.status != 'Complete' %}
+              <form class="col-auto" action="/complete" method="POST" id="complete">
+                  <input name="ID" type="hidden" Class="form-control" value={{ item.id }} />
+                  <button type="submit"class="btn btn-success"> Completed </button>
+              </form>
+          {% endif %}
+      </div>
+    {% endfor %}
 
 {% endblock %}
 
