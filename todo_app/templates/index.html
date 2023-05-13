@@ -7,6 +7,8 @@
     <p class="lead">My to-do app.</p>
   </div>
 
+  <h2>Items</h2>
+<!--
   <div class="row">
     <div class="col-md-12">
       <h2>Items</h2>
@@ -17,7 +19,7 @@
       </ul>
     </div>
   </div>
-  
+-->
   <!-- added for add item -->
     <div class="row">
       <form class="col-auto" action="/additem" method="POST" id="newitem">
@@ -46,7 +48,7 @@
           {% if item.status != 'Complete' %}
               <form class="col-auto" action="/complete" method="POST" id="complete">
                   <input name="ID" type="hidden" Class="form-control" value={{ item.id }} />
-                  <button type="submit"class="btn btn-success"> Completed </button>
+                  <button type="submit"class="btn btn-success btn-sm"> Completed </button>
               </form>
           {% endif %}
       </div>

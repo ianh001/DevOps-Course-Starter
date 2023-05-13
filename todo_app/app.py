@@ -14,7 +14,7 @@ app.config.from_object(Config())
 @app.route('/')
 def index():
 
-    current_items=sorted(get_items(), key=lambda x: x['status'])  
+    current_items=sorted(get_items(), key=lambda x: x['status'], reverse=True)  
     return render_template('index.html', items=current_items)
 
 @app.route('/additem', methods=['POST'])
