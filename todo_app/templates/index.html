@@ -42,7 +42,7 @@
       </form>
     </div>
   -->
-    {% for item in items %}
+ <!--   {% for item in items %}
       <div class="d-flex">
           <li>ID: {{ item.id }} - {{ item.title }} - {{item.status}}</li>
           {% if item.status != 'Complete' %}
@@ -53,6 +53,24 @@
           {% endif %}
       </div>
     {% endfor %}
+    -->
+    {% for item in items %}
+    <div class="d-flex">
+        <li>ID: {{ item.id }} - {{ item.title }} - {{item.status}}</li>
+        {% if item.status != 'Complete' %}
+<!--        <form class="col-auto" action="{{ url_for('complete', item_id=item.id) }}" method="POST">
+            <button type="submit" class="btn btn-success btn-sm">Completed</button>
+        </form>
+      -->
+        <form class="col-auto" action="{{ url_for('complete') }}" method="POST">
+          <input name="ID" type="hidden" class="form-control" value="{{ item.id }}" />
+          <button type="submit" class="btn btn-success btn-sm">Completed</button>
+      </form>
+      
+        {% endif %}
+    </div>
+    {% endfor %}
+    
 
 {% endblock %}
 
